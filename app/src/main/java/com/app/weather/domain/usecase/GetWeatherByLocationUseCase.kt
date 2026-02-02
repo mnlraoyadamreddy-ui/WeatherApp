@@ -11,7 +11,7 @@ class GetWeatherByLocationUseCase @Inject constructor(
     suspend operator fun invoke(
         latitude: Double,
         longitude: Double
-    ): Weather {
+    ):  Result<Weather>  {
         return repository.getWeatherByLocation(
             lat = latitude,
             lon = longitude
