@@ -10,6 +10,10 @@ android {
     namespace = "com.app.weather"
     compileSdk = 36
 
+    buildFeatures {
+        buildConfig = true
+    }
+
     defaultConfig {
         applicationId = "com.app.weather"
         minSdk = 24
@@ -18,6 +22,12 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField(
+            "String",
+            "OPEN_WEATHER_API_KEY",
+            "\"${project.findProperty("OPEN_WEATHER_API_KEY") ?: ""}\""
+        )
     }
 
     buildTypes {
@@ -64,7 +74,8 @@ dependencies {
     implementation(libs.okhttp.logging)
     implementation(libs.coroutines.android)
     implementation(libs.hilt.android)
+    implementation(libs.hilt.navigation.compose)
     kapt(libs.hilt.compiler)
     implementation(libs.coil.compose)
-
+    implementation(libs.play.services.location)
 }
